@@ -4,16 +4,82 @@
 
 namespace org.moms.tomatoes
 
-participant User identified by email {
+
+
+participant TomatoGrower identified by name {
+	o String name
+}
+
+abstract participant TomatoParticipant identified by email {
   o String email
+  o String name
+  o String company
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  o String value
+participant TomatoSeedSeller extends TomatoParticipant {
 }
 
-transaction ChangeAssetValue {
-  o String newValue
-  --> Asset relatedAsset
+participant TomatoBuyer extends TomatoParticipant {
+}
+
+asset TomatoSeed identified by seedId {
+	o String seedId
+	o String grower
+	o String seller
+	o Double buyPrice
+	o DateTime plantDate
+	o DateTime harvestDate
+	o Integer binNumber
+}
+
+asset TomatoPlant identified by plantId {
+  o String plantId
+  o String grower
+  o String buyer
+  o Integer count
+  o Double weight
+  o Double sellPrice
+}
+
+transaction purchaseSeeds {
+  o Double price
+  --> Asset TomatoSeed
+  o String seller
+  o String grower
+  o DateTime seedsPurchaseDate
+}
+
+
+transaction sellPlants {
+	o Double price
+	--> Asset TomatoPlant
+	o String buyer
+	o String grower
+	o DateTime plantsSoldDate
+}
+
+event seedsPurchased {
+	o Double price
+  	--> Asset TomatoSeed
+  	o String seller
+  	o String grower
+}
+
+event seedsPlanted {
+	o String grower
+	o DateTime plantDate
+}
+
+event plantsHarvested {
+	o String grower
+	o DateTime harvestDate
+	o Integer count
+	o Double weight
+}
+
+event plantsSold {
+	o Double price
+	--> Asset TomatoPlant
+	o String buyer
+	o String grower
 }
