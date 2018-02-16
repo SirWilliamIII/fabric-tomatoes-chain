@@ -1,0 +1,23 @@
+{
+  "name": "moms-tomatoes",
+  "version": "0.0.1",
+  "description": "keep track of all things tomatoes",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Will Carpenter",
+  "email": "dev.wtc3@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "browserfs": "^1.4.3",
+    "chai": "^4.1.2",
+    "composer-admin": "^0.16.4",
+    "composer-client": "^0.16.4",
+    "composer-common": "latest",
+    "composer-connector-embedded": "^0.16.4",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "mkdirp": "^0.5.1",
+    "mocha": "^5.0.1"
+  }
+}
